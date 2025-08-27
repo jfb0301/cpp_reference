@@ -5,7 +5,6 @@ double square(double x){
     return x * x; 
 };
 
-
 void print_square(double x){
     cout << "The square root of " << x << " is " << square(x) <<"\n";
 }
