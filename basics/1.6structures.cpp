@@ -1,31 +1,26 @@
 #include <iostream>
 
-struct Vector {
-    int sz;
-    double* elem;
-
-    // Destructor to free allocated memory
-    ~Vector() {
-        delete[] elem;
-    }
+class Vector{
+    public:
+        Vector(int s) : elem{new double[s]} {}                //construct a vector
+        ~Vector() { delete[] elem; }                    // free memory 
+        double& operator[](int i) {return elem[i]; }
+        int size() { return sz; }
+    private:
+        double* elem;
+        int sz;
 };
 
-// Initialize a Vector with size s
-void vector_init(Vector& v, int s) {
-    v.elem = new double[s];
-    v.sz = s;
-}
 
 // Read s doubles from cin and return their sum; s is assumed positive
 double read_and_sum(int s) {
-    Vector v;
-    vector_init(v, s);
+    Vector v(s);
     for (int i = 0; i != s; ++i)
-        std::cin >> v.elem[i]; // Fixed: Added semicolon
+        std::cin >> v[i]; // Fixed: Added semicolon
 
     double sum = 0;
     for (int i = 0; i != s; ++i)
-        sum += v.elem[i];
+        sum += v[i];
     return sum;
 }
 
